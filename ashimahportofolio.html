@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashimah Portofolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header - Full Screen */
+        header {
+            background: linear-gradient(135deg, #ff69b4, #ffb6c1, #ffffff);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Animated corner emojis */
+        .corner-emoji {
+            position: absolute;
+            font-size: 2rem;
+            z-index: 10;
+        }
+
+        .corner-emoji.top-left {
+            top: 20px;
+            left: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .corner-emoji.top-right {
+            top: 20px;
+            right: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .corner-emoji.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            animation: rotate 3s linear infinite;
+        }
+
+        .corner-emoji.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            animation: swing 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes swing {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(15deg);
+            }
+            75% {
+                transform: rotate(-15deg);
+            }
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #e91e63;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #e91e63;
+            background: linear-gradient(45deg, rgba(255, 105, 180, 0.1), rgba(255, 182, 193, 0.1));
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        section:nth-child(even) {
+            background: linear-gradient(45deg, rgba(255, 182, 193, 0.1), rgba(255, 255, 255, 0.5));
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #e91e63;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            display: block;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.25);
+        }
+
+        .project-card h3 {
+            color: #e91e63;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .project-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        /* Contact */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #ff69b4, #ffb6c1);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .corner-emoji {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#more">More About Me</a></li>
+                <li><a href="#my911">My 911</a></li>
+                <li><a href="#contact">Social Media</a></li>  
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="home">
+        <header>
+            <!-- Animated corner emojis -->
+            <div class="corner-emoji top-left">🌸</div>
+            <div class="corner-emoji top-right">💖</div>
+            <div class="corner-emoji bottom-left">✨</div>
+            <div class="corner-emoji bottom-right">🎀</div>
+            
+            <div class="container">
+                <div class="profile-img">
+                    <img src="home.jpeg" alt="Ashimah Nurul Izah">
+                </div>
+                <h1>ASHIMAH NURUL IZAH</h1>
+                <p class="subtitle">English Students</p>
+            </div>
+        </header>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="fade-in">ABOUT ME</h2>
+            <div class="fade-in" style="text-align: center; margin-bottom: 20px;">
+                <img src="ashimah.jpeg" alt="Foto Ashimah Nurul Izah" style="width:300px; height:auto; object-fit: cover;">
+            </div>
+
+            <div class="about-content fade-in">
+                <div>
+                    <div class="skills">
+                        <span class="skill-tag">Ekstrovert</span>
+                        <span class="skill-tag">Sweet</span>
+                        <span class="skill-tag">Humorous</span>
+                        <span class="skill-tag">Romantic</span>
+                        <span class="skill-tag">Childish</span>
+                        <span class="skill-tag">Careless</span>
+                        <span class="skill-tag">Alert</span>
+                        <span class="skill-tag">Serious</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>Hello!, let me introduce myself, my name is Ashimah Nurul Izah. I was born in Bombana, Southeast Sulawesi on November 4, 2005. Now I live in Kendari City, and am continuing my education at Halu Oleo University or commonly called UHO. 
+                        I am currently in my 4th semester where all the courses have started to make me dizzy, but I keep trying and trying not to go crazy, hahaha.</p><br>
+                    
+                    <p>I am an extrovert, but I can limit my attitude and behavior to people who are more mature than me or below me. I am alert to all jobs, but on the other hand I am also careless, but I always take responsibility for my carelessness. 
+                        In addition, I am also sweet and romantic, my girlfriend also admits that hahaha.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="more">
+        <div class="container">
+            <h2 class="fade-in">MORE ABOUT ME</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <img src="Logo_Universitas_Halu_Oleo.png" alt="Halu Oleo University" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <h3>Place of study</h3>
+                    <p>Halu Oleo University, abbreviated as UHO, is a state university in Kendari, Southeast Sulawesi, Indonesia, which was established in 1964 as a private university affiliated with Hasanuddin University Makassar. UHO was originally a private university founded by Drs. H. La Ode Manarfa and Drs. La Ode Malim.</p>
+                    <a href="https://uho.ac.id/" class="project-link">More</a>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <img src="dinsum.jpeg" alt="Halu Oleo University" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <h3>Favorite Food</h3>
+                    <p>You should know, mentai dim sum is that delicious. I love it so much, even my girlfriend is jealous because I always buy and talk about mentai dim sum.</p>
+                    <a href="https://gofood.co.id/id/kendari/restaurant/dapur-roja-wuawua-thr-a4203bd7-3a9d-4eb9-bbe2-b4560a4a577c?ot=eyJtZXJjaGFudF9pZCI6ImU2OGIyYzAxLTUwZDUtNDRmYS05ZGYyLTY4NDc0ZjA3OWNhZCIsInVzZXJfaWQiOiIwIiwiZXhwaXJ5X3RpbWVfZXBvY2giOjE3MzUxMDYwNjQsImRlbGl2ZXJ5X3ByaWNlIjoxMDAwLCJwYXJraW5nX2ZlZSI6MCwiZXRhX2J1ZmZlcl9taW5zIjo3LCJjdXN0b21lcl9sb2NhdGlvbiI6Ii02LjE4MjMxMywxMDYuODM2NDY0NiJ9.2sXG9nlxAHVRCZky%20AZ6QCC%2FzenFErpaMN3zuPP%2F5sA%3D" class="project-link">More</a>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <img src="images.jpeg" alt="Halu Oleo University" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <h3>Residence</h3>
+                    <p>I live in the BTN Azatata Kendari housing complex at number 16. Because I study at UHO, I am forced to live in Kendari while my parents are in Bombana.</p>
+                    <a href="https://maps.app.goo.gl/d8BTYyeB8amPY874A" class="project-link">More</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <img src="dinsum.jpeg" alt="Halu Oleo University" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <h3>Favorite Food</h3>
+                    <p>You should know, mentai dim sum is that delicious. I love it so much, even my girlfriend is jealous because I always buy and talk about mentai dim sum.</p>
+                    <a href="https://maps.app.goo.gl/d8BTYyeB8amPY874A" class="project-link">More</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="my911">
+        <div class="container">
+            <h2 class="fade-in">MY 911</h2>
+            <div class="fade-in" style="text-align: center; margin-bottom: 20px;">
+                <img src="fakih.jpeg" alt="Foto Ashimah Nurul Izah" style="width:300px; height:auto; object-fit: cover;">
+            </div>
+        </div>
+        <div class="about-text" style="text-align: center;">
+            <p>Muhammad Al-Ghifari Najmu Fakih, a person whose birth made his parents incredibly happy because he gave birth to a cute and handsome child. Fakih is his nickname, Fakih who was 21 years old then came into Ija's life, who always brought happiness until this second, never thought I would meet a man as good and sincere as this in my life. 
+                Thank you very much for all the efforts given from the beginning of our acquaintance until this second, everything is very meaningful in Ijaaaa's life.🎀💌💓</p>
+            <p>Thank you for always trying everything, thank you for never making Ija feel lonely, Ija is always herself when she is with Fakih, because Fakih never feels disgusted listening to all of Ija's complaints and outpourings of her heart even though Ija likes to share strange things. Thank you for always making Ija laugh, always doing things that Ija doesn't expect, thank you for always paying attention to Ija's little things, always giving Ija advice, always forgiving Ija even though she has made mistakes many times. Thank you for always being by Ija's side, Fakih is always Ija's support when Ija is weak, Ija is not strong, even though on the other hand Fakih feels even heavier. 
+                Fakih's presence in Ija's life makes everything more colorful and cheerful, a deepest gratitude can be met with a man like Fakih, because so far only Fakih has always tried to make Ija happy no matter what the condition.⸜(｡˃ ᵕ ˂ )⸝♡</p>
+        </div>
+    </section>
+
+    <section id="contact">
+    <div class="container">
+        <h2 class="fade-in">SOCIAL MEDIA</h2>
+        <div class="contact-content fade-in">
+            <p>Follow my social media!</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:ashimahizzah@gmail.com">ashimahizzah@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <strong>WhatsApp</strong><br>
+                        <a href="https://wa.me/6281270151365" target="_blank">0812-7015-1365</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🎬</div>
+                    <div>
+                        <strong>TikTok</strong><br>
+                        <a href="https://www.tiktok.com/@iyourjaa" target="_blank">@iyourja</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📸</div>
+                    <div>
+                        <strong>Instagram</strong><br>
+                        <a href="https://www.instagram.com/aijaahh_" target="_blank">@aijaahh_</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Muhammad AlGhifari Najmu Fakih. Dibuat dengan ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'linear-gradient(45deg, #ff69b4, #ffb6c1)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.opacity = '0.6';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = '100vh';
+            particle.style.zIndex = '1';
+            
+            document.body.appendChild(particle);
+            
+            const animation = particle.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 0.6 },
+                { transform: 'translateY(-100vh) rotate(360deg)', opacity: 0 }
+            ], {
+                duration: Math.random() * 3000 + 3000,
+                easing: 'linear'
+            });
+            
+            animation.onfinish = () => particle.remove();
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 2000);
+    </script>
+</body>
+</html>
